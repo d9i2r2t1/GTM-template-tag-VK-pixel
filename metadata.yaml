@@ -2,8 +2,10 @@ homepage: "https://www.adventum.ru/"
 documentation: "https://ppc.world/articles/polzovatelskie-shablony-v-gtm-razbiraemsya-na-primere/"
 versions:
   # Latest version
+  - sha: c5ae0e9da66a8c705ff651c94d7cb9de2e5af43d
+    changeNotes: Minor fixes
+  # Older version
   - sha: 08acd8e72f6ecf4ce777face179599fbe192d9d2
     changeNotes: File rename
-  # Older version
   - sha: ebf90fae65c1eec725a752b8f2691d16276831ce
     changeNotes: Initial release
