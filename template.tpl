@@ -642,7 +642,7 @@ const pixel = {
 
     //VK openapi.js init method
     openapiInit: () => {
-        injectScript('https://vk.com/js/api/openapi.js?159', pixel.setVkAsyncInit, data.gtmOnFailure, 'vkPixel');
+        injectScript('https://vk.com/js/api/openapi.js?159', pixel.setVkAsyncInit(), data.gtmOnFailure, 'vkPixel');
         setInWindow('openapiInject', 1);
     },
 
