@@ -10,7 +10,7 @@ ___INFO___
 
 {
   "displayName": "VK Pixel",
-  "description": "VK dynamic retargeting pixel v1.0.\nCreated by Oleg Denisov",
+  "description": "VK dynamic retargeting pixel v1.0. Created by Oleg Denisov.",
   "securityGroups": [],
   "id": "cvt_temp_public_id",
   "type": "TAG",
@@ -256,7 +256,7 @@ ___TEMPLATE_PARAMETERS___
 
 ___SANDBOXED_JS_FOR_WEB_TEMPLATE___
 
-//api
+// Api
 const copyFromWindow = require('copyFromWindow');
 const setInWindow = require('setInWindow');
 const injectScript = require('injectScript');
@@ -268,7 +268,7 @@ const makeInteger = require('makeInteger');
 const makeString = require('makeString');
 const callLater = require('callLater');
 
-//user settings object
+// User settings object
 const settings = {
     event: data.event,
     pixelIDs: data.pixelIDs,
@@ -280,26 +280,24 @@ const settings = {
     siteSearchQueryParam: data.siteSearchQueryParam
 };
 
-//main object
+// Main object
 const pixel = {
-    //get page host method
+    // Get page host method
     getPageHostname: () => getUrl('host'),
-
-    //get VK object method
+    // Get VK object method
     getVK: () => copyFromWindow('VK'),
-
-    //set VK openapi.js callback method
+    // Set VK openapi.js callback method
     setVkAsyncInit: () => {
         setInWindow('vkAsyncInit', pixel.sendEvent);
     },
 
-    //get site search phrase method
+    // Get site search phrase method
     getSiteSearchPhrase: () => {
         if (settings.event === 'view_search') return getQueryParameters(settings.siteSearchQueryParam);
         else return undefined;
     },
 
-    //get event parameters method
+    // Get event parameters method
     getEventParams: (products, currencyCode, revenue) => {
         const eventParamsClean= {};
         const eventParams = {
@@ -317,19 +315,19 @@ const pixel = {
         return eventParamsClean;
     },
 
-    //get price list ID method
+    // Get price list ID method
     getPriceListId: hostname => {
         if (settings.fewPriceLists) return settings.priceListIds[hostname];
         else return settings.priceListId;
     },
 
-    //VK openapi.js init method
+    // VK openapi.js init method
     openapiInit: () => {
-        injectScript('https://vk.com/js/api/openapi.js?159', pixel.setVkAsyncInit, data.gtmOnFailure, 'vkPixel');
+        injectScript('https://vk.com/js/api/openapi.js?159', pixel.setVkAsyncInit(), data.gtmOnFailure, 'vkPixel');
         setInWindow('openapiInject', 1);
     },
 
-    //send event method
+    // Send event method
     sendEvent: () => {
         if (settings.event === 'hit') {
             settings.pixelIDs.split(',').forEach(p => {
@@ -352,7 +350,7 @@ const pixel = {
         }
     },
 
-    //pixel start method
+    // Pixel start method
     start: () => {
         if (pixel.getVK() === undefined && copyFromWindow('openapiInject') !== 1) {
             pixel.openapiInit();
@@ -368,13 +366,13 @@ const pixel = {
         }
     },
 
-    //start attempts counter
+    // Start attempts counter
     count: 0
 };
 
-//object with methods for processing an array of event products
+// Object with methods for processing an array of event products
 const eventProducts = {
-    //get product parameters method
+    // Get product parameters method
     getProductParams: products => {
         const arr = [];
         products.forEach(i => {
@@ -392,7 +390,7 @@ const eventProducts = {
         return arr;
     },
 
-    //get unique product categories method. Return a string. String type is 'a,b,c'
+    // Get unique product categories method. Return a string. String type is 'a,b,c'
     getCategoryString: products => {
         let categoryId = '';
         const check = [];
@@ -405,7 +403,7 @@ const eventProducts = {
         return categoryId.slice(1);
     },
 
-    //get total price method
+    // Get total price method
     getTotalPrice: (products, revenue) => {
         let sumPrice = 0;
         if (revenue !== undefined ) return makeInteger(revenue * 100) / 100;
@@ -419,7 +417,7 @@ const eventProducts = {
     }
 };
 
-//let's run the pixel :)
+// Run
 pixel.start();
 
 
