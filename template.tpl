@@ -10,6 +10,7 @@ ___INFO___
 
 {
   "displayName": "VK Pixel",
+  "categories": ["REMARKETING", "ANALYTICS", "CONVERSIONS"],
   "description": "VK dynamic retargeting pixel v1.0. Created by Oleg Denisov.",
   "securityGroups": [],
   "id": "cvt_temp_public_id",
