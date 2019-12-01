@@ -1,5 +1,5 @@
 homepage: "https://www.adventum.ru/"
-documentation: "https://ppc.world/articles/polzovatelskie-shablony-v-gtm-razbiraemsya-na-primere/"
+documentation: "https://github.com/oleg-dirtrider/gtm_template_vk_pixel/blob/master/README.md"
 versions:
   # Latest version
   - sha: 5cf18e3f07453256fa82a22f523a7a859360a471
